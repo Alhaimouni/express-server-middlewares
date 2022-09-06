@@ -2,9 +2,10 @@
 
 const express = require('express');
 const cors = require('cors');
-const {handleMain, handleSquare} = require('./Handlers');
+const {handleMain, handleSquare, handleNoEndPoint} = require('./Handlers');
 const {squareTheNum} = require('./middlewares/validate-number');
 const {errHandler} = require('./error-handlers/500');
+
 const app = express();
 
 //======================================================= (App Level Middlewares) =======================================================//
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.get('/',handleMain);
 app.get('/square',squareTheNum,handleSquare);
+app.get('*/',handleNoEndPoint);
 
 //=========================================================== (Error Handler) ===========================================================//
 
