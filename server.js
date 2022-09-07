@@ -5,6 +5,7 @@ const cors = require('cors');
 const {handleMain, handleSquare, handleNoEndPoint} = require('./Handlers');
 const {squareTheNum} = require('./middlewares/validate-number');
 const {errHandler} = require('./error-handlers/500');
+const {logger} = require('./middlewares/logger');
 
 const app = express();
 
@@ -12,12 +13,13 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(logger);
 
 //============================================================= (EndPoints) =============================================================//
 
 app.get('/',handleMain);
 app.get('/square',squareTheNum,handleSquare);
-app.get('*/',handleNoEndPoint);
+// app.get('*/',handleNoEndPoint);
 
 //=========================================================== (Error Handler) ===========================================================//
 
