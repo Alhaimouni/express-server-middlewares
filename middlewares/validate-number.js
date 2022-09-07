@@ -1,8 +1,10 @@
 'use strict';
 
 function squareTheNum(req, res, next) {
-
+    
+    console.log('inside mow');
     const {num} = req.query ;
+    console.log(req.query,'after query call');
     const rgx = /\b[0-9][0-9]*\b/g;
     const strNum = num.match(rgx);
 
